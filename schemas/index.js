@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const connect = () => {
-    mongoose.connect('mongodb://test:test@54.180.147.13:27017/admin', { ignoreUndefined:true }).catch((err) => {
+    mongoose.connect('mongodb://test:test@52.79.241.155:27017/admin', { ignoreUndefined:true }).catch((err) => {
         console.error(err);
     })
 };
