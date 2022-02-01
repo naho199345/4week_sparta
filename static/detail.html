@@ -183,8 +183,8 @@
     }
 
     // 댓글 수정
-    function edit_commnetbtn(i,commentId) {
-      const content = $('#content_edit'+i).val();
+    function edit_commnetbtn(i, commentId) {
+      const content = $('#content_edit' + i).val();
       $.ajax({
         type: "PATCH",
         url: `/api/comment/${commentId}`,
@@ -204,14 +204,18 @@
       })
     }
 
-     // 댓글 삭제
-     function deletecomment(commentId) {
+    // 댓글 삭제
+    function deletecomment(commentId) {
+      const con_test = confirm('정말로 삭제할까요?')
+            if (!con_test) {
+                return
+            }
       $.ajax({
         type: "DELETE",
         url: `/api/comment/${commentId}`,
-        data: { 
-         },
-         headers: {
+        data: {
+        },
+        headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         success: function (response) {
@@ -306,3 +310,5 @@
 
   </div>
 </body>
+
+</html>
