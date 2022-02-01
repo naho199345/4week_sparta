@@ -36,9 +36,10 @@ router.patch('/comment/:commentId', authMiddlleware, async (req, res) => {
     if (!comment) {
        return res.status(400).send({errorMessage:'본인의 글이 아닙니다.'})
     }
-    if (comment.length === 0) {
+    if (content.length === 0) {
         return res.status(400).send({errorMessage:'글을 적어주세요!'})
     }
+    
 
     await Comment.updateOne({_id: commentId, nickname},{$set:{content}})
 
