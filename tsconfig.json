@@ -1,6 +1,8 @@
 {
   "files": [
-    "./routes/articles.ts"
+    "./routes/articles.ts",
+    "./routes/comments.ts",
+    "./routes/users.ts"
   ],
   "compilerOptions": {
     "allowJs": true,

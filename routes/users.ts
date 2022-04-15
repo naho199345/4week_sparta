@@ -5,6 +5,12 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const authMiddlleware = require('../middlewares/auth-middleware')
 
+import { Request, Response, NextFunction } from "express";
+export const methodForTs = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => { };
 const postUsersSchemas = Joi.object({
     nickname: Joi.string().required().pattern(new RegExp('^[a-zA-Z0-9가-힣]{3,30}$')),
     password: Joi.string().required().min(4),
@@ -12,7 +18,7 @@ const postUsersSchemas = Joi.object({
 });
 
 // 회원가입구현
-router.post('/users', async (req, res) => {
+router.post('/users', async (req: Request, res: Response) => {
     try {
         const { nickname, password, confirmPassword } = await postUsersSchemas.validateAsync(req.body);
         if (password !== confirmPassword) {
@@ -21,7 +27,7 @@ router.post('/users', async (req, res) => {
             });
             return;
         }
-        if(nickname===password) {
+        if (nickname === password) {
             res.status(400).send({
                 errorMessage: "닉네임과 비밀번호가 같습니다."
             });
@@ -54,12 +60,12 @@ const postAuthSchemas = Joi.object({
 })
 
 // 로그인 구현
-router.post('/auth', async (req, res) => {
+router.post('/auth', async (req: Request, res: Response) => {
     try {
         const { nickname, password } = await postAuthSchemas.validateAsync(req.body);
 
         const user = await User.findOne({ nickname, password }).exec();
-        
+
 
         if (!user) {
             res.status(400).send({
@@ -67,7 +73,7 @@ router.post('/auth', async (req, res) => {
             });
             return;
         };
-        if(nickname===password) {
+        if (nickname === password) {
             res.status(400).send({
                 errorMessage: "닉네임과 비밀번호가 같습니다."
             });
@@ -86,7 +92,7 @@ router.post('/auth', async (req, res) => {
 });
 
 // 사용자인증 미들웨어
-router.get('/users/me', authMiddlleware, async (req, res) => {
+router.get('/users/me', authMiddlleware, async (req: Request, res: Response) => {
     const { user } = res.locals;
     res.send({
         user: {
