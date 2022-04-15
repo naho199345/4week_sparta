@@ -1,0 +1,12 @@
+{
+  "files": [
+    "./routes/articles.ts"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "strictFunctionTypes": true
+  }
+}
