@@ -12,6 +12,8 @@ export const methodForTs = (
     next: NextFunction
 ) => { };
 
+
+
 const postUsersSchemas = Joi.object({
     nickname: Joi.string().required().pattern(new RegExp('^[a-zA-Z0-9가-힣]{3,30}$')),
     password: Joi.string().required().min(4),
